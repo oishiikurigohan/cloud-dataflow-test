@@ -1,0 +1,12 @@
+FROM maven:3.6.3-openjdk-11
+
+# Cloud SDK配布URIをパッケージソースとして追加
+# Google Cloud Platform公開鍵のインポート
+# パッケージリストを更新してCloud SDKをインストール
+# https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu?hl=ja
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
+  apt-get update -y && apt-get install google-cloud-sdk -y
+
+WORKDIR /home/dataflow-test
+CMD ["/bin/bash"]

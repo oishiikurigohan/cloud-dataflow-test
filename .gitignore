@@ -1,0 +1,8 @@
+.settings/
+.vscode/
+target/
+.classpath
+.project
+account001-key.json
+dependency-reduced-pom.xml
+.gitignore
